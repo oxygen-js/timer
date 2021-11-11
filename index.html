@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="main.css">
+    <title>Timer</title>
+</head>
+<body>
+
+<main>
+    <button class="nes-btn is-primary">+10 мин.</button>
+    <button class="nes-btn is-primary">+5 мин.</button>
+    <button class="nes-btn is-primary">+1 мин.</button>
+
+    <div id="timer">
+        <div id="days">00:</div>
+        <div id="hours">00:</div>
+        <div id="minutes">00:</div>
+        <div id="seconds">00</div>
+    </div>
+
+    <button id="reset" class="nes-btn is-error">Reset</button>
+    <button id="start" class="nes-btn is-success">Start</button>
+
+</main>
+
+    <script src="main.js"></script>
+</body>
+</html>
