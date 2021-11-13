@@ -6,26 +6,28 @@
     <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="main.css">
     <title>Timer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 
-<main>
-    <button class="nes-btn is-primary" id="add_minutes">+1 мин.</button>
-    <button class="nes-btn is-primary" id="add_5_minutes">+5 мин.</button>
-    <button class="nes-btn is-primary" id="add_10_minutes">+10 мин.</button>
+    <main>
+        <button class="nes-btn is-primary" id="add_minutes">+1 мин.</button>
+        <button class="nes-btn is-primary" id="add_5_minutes">+5 мин.</button>
+        <button class="nes-btn is-primary" id="add_10_minutes">+10 мин.</button>
 
-    <div id="timer">
-        <div id="days">00:</div>
-        <div id="hours">00:</div>
-        <div id="minutes">00:</div>
-        <div id="seconds">00</div>
-    </div>
+        <div id="timer">
+            <div id="days">00:</div>
+            <div id="hours">00:</div>
+            <div id="minutes">00:</div>
+            <div id="seconds">00</div>
+        </div>
 
-    <button id="reset" class="nes-btn is-error">Reset</button>
-    <button id="start" class="nes-btn is-success">Start</button>
+        <button id="reset" class="nes-btn is-error">Reset</button>
+        <button id="start" class="nes-btn is-success">Start</button>
 
-</main>
+    </main>
 
-    <script src="main.js"></script>
+    <script src="test.js"></script>
+    <!-- <script src="main.js"></script> -->
 </body>
 </html>

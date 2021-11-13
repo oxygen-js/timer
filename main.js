@@ -49,10 +49,9 @@ function setHtml(element, str) {
 function setMinutes() {
     let value = 60;
     interval = setInterval(() => {
-        if (minutesVal === 1) {
-            minutesVal = 0;
-            setHtml(minutesElement, `00:`);
-        }
+        value -= 1;
+        let str = value < 10 ? `0${value}` : `${value}`;
+        setHtml(secondsElement, str);
 
         if (value === 0 && minutesVal !== 0) {
             minutesVal -= 1;
@@ -61,14 +60,26 @@ function setMinutes() {
             setHtml(minutesElement, str);
         }
 
+        if (value === 0) {
+            minutesVal -= 1;
+            setHtml(minutesElement, str);
+        }
+
+
+
+        if (minutesVal === 1) {
+            minutesVal = 0;
+            setHtml(minutesElement, `00:`);
+        }
+
+
+
         if (value === 0 && minutesVal === 0) {
             reset();
             return ;
         }
 
-        value -= 1;
-        let str = value < 10 ? `0${value}` : `${value}`;
-        setHtml(secondsElement, str);
+
     }, 1000);
 }
 
