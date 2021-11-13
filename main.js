@@ -1,9 +1,7 @@
 "use strict"
 
-/**Variables*/
 let interval;
 
-let daysElement = getHtml("days");
 let hoursElement = getHtml("hours");
 let minutesElement = getHtml("minutes");
 let secondsElement = getHtml("seconds");
@@ -13,31 +11,19 @@ let start = getHtml("start");
 
 let addMinutes = getHtml("add_minutes");
 
-let minutesVal = 0;
-/**END**/
-
-
+let timer = moment({ hour: 0, minute: 0, seconds: 0 });
 
 
 addMinutes.addEventListener("click", () => {
-    minutesVal += 1;
-    let str = minutesVal < 10 ? `0${minutesVal}:` : `${minutesVal}:`;
+    timer.add(1, "minutes");
+    // test.diff(10, "minutes");
+    let str = timer.minutes() < 10 ? `0${timer.minutes()}:` : `${timer.minutes()}:`
     setHtml(minutesElement, str);
-})
-
-resetBtn.addEventListener("click", () => {
-   reset();
-});
-
-start.addEventListener("click", () => {
-    setMinutes();
+    console.log(timer.minutes());
 });
 
 
 
-
-
-/**Functions**/
 function getHtml(id) {
     return document.getElementById(id);
 }
@@ -45,53 +31,4 @@ function getHtml(id) {
 function setHtml(element, str) {
     element.textContent = str;
 }
-
-function setMinutes() {
-    let value = 60;
-    interval = setInterval(() => {
-        value -= 1;
-        let str = value < 10 ? `0${value}` : `${value}`;
-        setHtml(secondsElement, str);
-
-        if (value === 0 && minutesVal !== 0) {
-            minutesVal -= 1;
-            value = 59;
-            let str = minutesVal < 10 ? `0${minutesVal}:` : `${minutesVal}:`;
-            setHtml(minutesElement, str);
-        }
-
-        if (value === 0) {
-            minutesVal -= 1;
-            setHtml(minutesElement, str);
-        }
-
-
-
-        if (minutesVal === 1) {
-            minutesVal = 0;
-            setHtml(minutesElement, `00:`);
-        }
-
-
-
-        if (value === 0 && minutesVal === 0) {
-            reset();
-            return ;
-        }
-
-
-    }, 1000);
-}
-
-
-function reset() {
-    let nullString = "00";
-    minutesVal = 0;
-    clearInterval(interval);
-    setHtml(daysElement, `${nullString}:`);
-    setHtml(hoursElement, `${nullString}:`);
-    setHtml(minutesElement, `${nullString}:`);
-    setHtml(secondsElement, `${nullString}`);
-}
-/**END**/
 
