@@ -1,32 +1,43 @@
 "use strict"
 
+/**Variables*/
 let interval;
 
-let days = getHtml("days");
-let hours = getHtml("hours");
-let minutes = getHtml("minutes");
-let seconds = getHtml("seconds");
+let daysElement = getHtml("days");
+let hoursElement = getHtml("hours");
+let minutesElement = getHtml("minutes");
+let secondsElement = getHtml("seconds");
 
-let reset = getHtml("reset");
+let resetBtn = getHtml("reset");
 let start = getHtml("start");
 
-reset.addEventListener("click", () => {
-    clearInterval(interval);
-    setHtml(days, "00:");
-    setHtml(hours, "00:");
-    setHtml(minutes, "00:");
-    setHtml(seconds, "00");
+let addMinutes = getHtml("add_minutes");
+
+let minutesVal = 0;
+/**END**/
+
+
+
+
+addMinutes.addEventListener("click", () => {
+    minutesVal += 1;
+    let str = minutesVal < 10 ? `0${minutesVal}:` : `${minutesVal}:`;
+    setHtml(minutesElement, str);
+})
+
+resetBtn.addEventListener("click", () => {
+   reset();
 });
 
 start.addEventListener("click", () => {
-    interval = setInterval(() => {
-        setHtml(days, `${new Date().getDate()}:`);
-        setHtml(hours, `${new Date().getHours()}:`);
-        setHtml(minutes, `${new Date().getMinutes()}:`);
-        setHtml(seconds, `${new Date().getSeconds()}`);
-    }, 1000)
+    setMinutes();
 });
 
+
+
+
+
+/**Functions**/
 function getHtml(id) {
     return document.getElementById(id);
 }
@@ -34,3 +45,42 @@ function getHtml(id) {
 function setHtml(element, str) {
     element.textContent = str;
 }
+
+function setMinutes() {
+    let value = 60;
+    interval = setInterval(() => {
+        if (minutesVal === 1) {
+            minutesVal = 0;
+            setHtml(minutesElement, `00:`);
+        }
+
+        if (value === 0 && minutesVal !== 0) {
+            minutesVal -= 1;
+            value = 59;
+            let str = minutesVal < 10 ? `0${minutesVal}:` : `${minutesVal}:`;
+            setHtml(minutesElement, str);
+        }
+
+        if (value === 0 && minutesVal === 0) {
+            reset();
+            return ;
+        }
+
+        value -= 1;
+        let str = value < 10 ? `0${value}` : `${value}`;
+        setHtml(secondsElement, str);
+    }, 1000);
+}
+
+
+function reset() {
+    let nullString = "00";
+    minutesVal = 0;
+    clearInterval(interval);
+    setHtml(daysElement, `${nullString}:`);
+    setHtml(hoursElement, `${nullString}:`);
+    setHtml(minutesElement, `${nullString}:`);
+    setHtml(secondsElement, `${nullString}`);
+}
+/**END**/
+
