@@ -9,17 +9,16 @@ let secondsElement = getHtml("seconds");
 let resetBtn = getHtml("reset");
 let start = getHtml("start");
 
-let addMinutes = getHtml("add_minutes");
+let add_1_minutes = getHtml("add_minutes");
 
 let timer = moment({ hour: 0, minute: 0, seconds: 0 });
 
 
-addMinutes.addEventListener("click", () => {
+add_1_minutes.addEventListener("click", () => {
     timer.add(1, "minutes");
     // test.diff(10, "minutes");
-    let str = timer.minutes() < 10 ? `0${timer.minutes()}:` : `${timer.minutes()}:`
+    let str = timer.minutes()
     setHtml(minutesElement, str);
-    console.log(timer.minutes());
 });
 
 
@@ -28,7 +27,13 @@ function getHtml(id) {
     return document.getElementById(id);
 }
 
-function setHtml(element, str) {
-    element.textContent = str;
+function getConvertTime(value) {
+    return value < 10 ? `0${value}:` : `${value}:`;
+}
+
+function setHtml(element, { hour = 0, minute = 0, seconds = 0 }) {
+    hoursElement.textContent = getConvertTime(hour);
+    minutesElement.textContent = getConvertTime(minute);
+    secondsElement.textContent = seconds < 10 ? `0${seconds}:` : `${seconds}`;
 }
 
