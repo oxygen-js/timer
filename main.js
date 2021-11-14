@@ -82,6 +82,7 @@ function stopTimer() {
     timer.minutes(0);
     timer.seconds(0);
     setHtml({ hours: timer.hours(), minute: timer.minutes(), seconds: timer.seconds() });
+    new Audio('audio/beep.mp3').play();
 }
 
 function setHtml({ hours = 0, minutes = 0, seconds = 0 }) {
